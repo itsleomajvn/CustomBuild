@@ -343,7 +343,7 @@ def check_queue():
                         os.path.join(tmpdir, task['board']),
                             outdir)
         #copy_tree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
-        shutil.copytree(tmpdir, task['board'], 'bin'), outdir)
+        shutil.copytree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
         app.logger.info('Build successful!')
         remove_directory_recursive(tmpdir)
 
