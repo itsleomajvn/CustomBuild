@@ -10,8 +10,8 @@ import time
 import fcntl
 import hashlib
 import fnmatch
-#from distutils.dir_util import copy_tree
-import shutil
+from distutils.dir_util import copy_tree
+#import shutil
 from flask import Flask, render_template, request, send_from_directory, render_template_string, jsonify, redirect
 from threading import Thread, Lock
 import sys
@@ -342,8 +342,8 @@ def check_queue():
         app.logger.info('Copying build files from %s to %s',
                         os.path.join(tmpdir, task['board']),
                             outdir)
-        #copy_tree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
-        shutil.copytree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
+        copy_tree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
+        #shutil.copytree(os.path.join(tmpdir, task['board'], 'bin'), outdir)
         app.logger.info('Build successful!')
         remove_directory_recursive(tmpdir)
 
